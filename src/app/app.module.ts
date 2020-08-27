@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {LoginComponent} from './login/login.component';
 import {LayoutComponent} from './layout/layout.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
@@ -21,8 +21,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {LoaderComponent} from './loader/loader.component';
 import {LoaderService} from './loader/loader.service';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCardModule} from '@angular/material/card';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -48,8 +48,9 @@ import {MatCardModule} from '@angular/material/card';
     MatAutocompleteModule,
     HttpClientModule,
     MatCheckboxModule,
-    MatProgressSpinnerModule,
-    MatCardModule
+    MatProgressBarModule,
+    MatCardModule,
+    BrowserAnimationsModule
   ],
   providers: [
     LoaderService
