@@ -38,6 +38,7 @@ export class HeroService {
 
   errorHandler(error: HttpErrorResponse): boolean {
     console.log(error);
+    this.loaderService.hide();
     this.httpErrorMessage = 'Server Error!!';
     return false;
   }

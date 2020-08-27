@@ -9,6 +9,7 @@ import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import {PowerStats} from '../model/power-stats';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 am4core.useTheme(am4themes_animated);
 
@@ -30,7 +31,7 @@ export class DashboardComponent implements OnInit {
   @ViewChild('heroInput', {static: true}) heroInput: ElementRef;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
-  constructor(private service: HeroService) {
+  constructor(private service: HeroService, private snackBar: MatSnackBar) {
   }
 
   async ngOnInit() {
@@ -62,7 +63,9 @@ export class DashboardComponent implements OnInit {
       this.detectValueChanges();
       return;
     }
-    alert(this.service.httpErrorMessage);
+    this.snackBar.open(this.service.httpErrorMessage, '', {
+      duration: 1000,
+    });
     return;
   }
 
@@ -94,7 +97,9 @@ export class DashboardComponent implements OnInit {
         this.heros.splice(i, 1);
       }
     } else {
-      alert('Maximum 4 heroes can be selected');
+      this.snackBar.open('Maximum 4 heroes can be selected', '', {
+        duration: 1000,
+      });
     }
   }
 
