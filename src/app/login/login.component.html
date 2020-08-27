@@ -1,0 +1,35 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>My Super-Heroes</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-expansion-panel expanded="true" hideToggle="true" disabled="true">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Sign In
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <form [formGroup]="signInForm" (keyup.enter)="submit()">
+    <div class="field">
+      <mat-form-field>
+        <input matInput type="text" name="user_id" formControlName="user_id"
+               placeholder="Enter user id" required
+        >
+      </mat-form-field>
+    </div>
+    <div class="field">
+      <mat-form-field>
+        <input matInput type="password"
+               formControlName="password" name="password"
+               placeholder="Enter Password" required>
+      </mat-form-field>
+    </div>
+  </form>
+  <div class="button">
+    <button [disabled]="!canSubmit()" (click)="submit()" mat-raised-button
+            color="primary">Submit
+    </button>
+  </div>
+</mat-expansion-panel>
+

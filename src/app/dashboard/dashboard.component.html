@@ -1,0 +1,122 @@
+<mat-expansion-panel
+  [disabled]="true"
+  [expanded]="true">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <b class="panel-title">Dashboard</b>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <ng-container>
+    <div class="form">
+      <div class="column1">
+        <mat-form-field class="example-chip-list" style="width: 100%">
+          <mat-chip-list #chipList aria-label="Hero selection">
+            <mat-chip
+              *ngFor="let h of heros"
+              [selectable]="selectable">
+              {{h.name}}
+            </mat-chip>
+            <input
+              placeholder="Enter text to search hero..."
+              #heroInput
+              [formControl]="heroCtrl"
+              [matAutocomplete]="auto"
+              [matChipInputFor]="chipList">
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected()">
+            <mat-option *ngFor="let fh of filteredHeros | async" [value]="fh">
+              <div (click)="optionClicked($event, fh);">
+                <mat-checkbox [disabled]="heros.length==4 && !fh.selected" [checked]="fh.selected"
+                              (change)="toggleSelection(fh)"
+                              (click)="$event.stopPropagation()">
+                  {{fh.name}}
+                </mat-checkbox>
+              </div>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div class="column2">
+        <div class="center-center">
+          <button mat-raised-button (click)="generateChart()"
+                  color="primary">View Stats
+          </button>
+          <button style="margin-left: 25px" mat-raised-button (click)="resetChart()"
+                  color="primary">Reset Stats
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container>
+    <div id="chartdiv" style="width: 100%; height: 500px"></div>
+  </ng-container>
+  <ng-container>
+    <div class="grid-card">
+      <div class="sub-grid-card">
+        <div>
+          <mat-card class="example-card">
+            <mat-card-header>
+              <mat-card-title>Select Super Heroes</mat-card-title>
+            </mat-card-header>
+            <div class="grid-users">
+              <div class="sub-grid-users list-head">
+                <div>Name</div>
+              </div>
+            </div>
+            <div *ngIf="heros.length > 1">
+              <div class="grid-users" *ngFor="let h of heros;">
+                <div class="sub-grid-users">
+                  <div>{{h.name}}</div>
+                </div>
+                <div style="cursor:pointer;" *ngIf="h.selectedAsFavorite" (click)="toggleFavorite(h, 'remove_fav')"
+                     class="icon-column" matTooltip="Remove As Favorite">
+                  <mat-icon>
+                    favorite
+                  </mat-icon>
+                </div>
+                <div style="cursor: pointer" *ngIf="!h.selectedAsFavorite" (click)="toggleFavorite(h,'add_fav')"
+                     class="icon-column" matTooltip="Mark As Favorite">
+                  <mat-icon>
+                    favorite_border
+                  </mat-icon>
+                </div>
+              </div>
+            </div>
+            <div class="no-data" *ngIf="heros.length == 0">
+              Currently there is no heroes selected
+            </div>
+          </mat-card>
+        </div>
+        <div>
+          <mat-card class="example-card">
+            <mat-card-header>
+              <mat-card-title>Selected Super Heroes</mat-card-title>
+            </mat-card-header>
+            <div class="grid-favorite-users">
+              <div class="sub-grid-favorite-users list-head">
+                <div>Name</div>
+              </div>
+            </div>
+            <div *ngIf="favoriteHeros.length > 0">
+            <div class="grid-favorite-users" *ngFor="let f of favoriteHeros;">
+              <div class="sub-grid-favorite-users">
+                <div>{{f.name}}</div>
+              </div>
+              <div style="cursor: pointer"
+                class="icon-column" matTooltip="Delete" (click)="deleteFavorite(f)">
+                <mat-icon>
+                  delete
+                </mat-icon>
+              </div>
+            </div>
+            </div>
+            <div class="no-data"  *ngIf="favoriteHeros.length == 0">
+              Currently there is no favorite heroes selected
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</mat-expansion-panel>

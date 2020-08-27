@@ -1,9 +1,9 @@
-import {PowerStats} from './PowerStats';
+import {PowerStats} from './power-stats';
 
 export class Hero {
   id: number;
   name: string;
-  powerStats = new PowerStats();
+  powerStats: PowerStats = new PowerStats();
   selected: boolean;
   selectedAsFavorite: boolean;
 
