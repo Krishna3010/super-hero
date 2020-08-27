@@ -24,6 +24,7 @@ import {LoaderService} from './loader/loader.service';
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatProgressBarModule,
     MatCardModule,
     BrowserAnimationsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTooltipModule
   ],
   providers: [
     LoaderService

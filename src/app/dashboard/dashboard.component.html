@@ -70,14 +70,14 @@
                   <div>{{h.name}}</div>
                 </div>
                 <div style="cursor:pointer;" *ngIf="h.selectedAsFavorite" (click)="toggleFavorite(h, 'remove_fav')"
-                     class="icon-column" matTooltip="Remove As Favorite">
-                  <mat-icon>
+                     class="icon-column">
+                  <mat-icon matTooltip="Remove As Favorite">
                     favorite
                   </mat-icon>
                 </div>
                 <div style="cursor: pointer" *ngIf="!h.selectedAsFavorite" (click)="toggleFavorite(h,'add_fav')"
-                     class="icon-column" matTooltip="Mark As Favorite">
-                  <mat-icon>
+                     class="icon-column">
+                  <mat-icon matTooltip="Mark As Favorite">
                     favorite_border
                   </mat-icon>
                 </div>
@@ -104,8 +104,8 @@
                 <div>{{f.name}}</div>
               </div>
               <div style="cursor: pointer"
-                class="icon-column" matTooltip="Delete" (click)="deleteFavorite(f)">
-                <mat-icon>
+                class="icon-column" (click)="deleteFavorite(f)">
+                <mat-icon matTooltip="Delete">
                   delete
                 </mat-icon>
               </div>
